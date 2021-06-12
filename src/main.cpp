@@ -8,8 +8,6 @@
 Servo servo_x; // 建立SERVO物件
 Servo servo_y;
 
-
-
 void setup()
 {
   servo_x.attach(9); // 設定要將伺服馬達接到哪一個PIN腳
@@ -30,8 +28,8 @@ void loop()
   input_z = digitalRead(JOYSTICK_Z);
 
   int pose_x, pose_y;
-  pose_x = map(input_x, 1, 1023, 0, 180);
-  pose_y = map(input_y, 1, 1023, 0, 180);
+  pose_y = map(input_x, 1, 1023, 80, 100);
+  pose_x = map(1024-input_y, 1, 1023, 80, 100);
   servo_x.write(pose_x); //旋轉到
   servo_y.write(pose_y); //旋轉到
 
