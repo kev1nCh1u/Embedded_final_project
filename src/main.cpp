@@ -33,13 +33,17 @@ void loop()
   servo_x.write(pose_x); //旋轉到
   servo_y.write(pose_y); //旋轉到
 
-  Serial.print(input_x, DEC);
-  Serial.print(",");
-  Serial.print(input_y, DEC);
-  Serial.print(",");
-  Serial.print(input_z, DEC);
-  Serial.print(" ");
-  Serial.print(pose_x, DEC);
-  Serial.print(",");
-  Serial.println(pose_y, DEC);
+  Serial.write(0xF0);
+  Serial.write(pose_x);
+  Serial.write(pose_y);
+
+  // Serial.print(input_x, DEC);
+  // Serial.print(",");
+  // Serial.print(input_y, DEC);
+  // Serial.print(",");
+  // Serial.print(input_z, DEC);
+  // Serial.print(" ");
+  // Serial.print(pose_x, DEC);
+  // Serial.print(",");
+  // Serial.println(pose_y, DEC);
 }
