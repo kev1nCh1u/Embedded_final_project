@@ -33,9 +33,16 @@ void loop()
   servo_x.write(pose_x); //旋轉到
   servo_y.write(pose_y); //旋轉到
 
-  Serial.write(0xF0);
-  Serial.write(pose_x);
-  Serial.write(pose_y);
+  if (Serial.available() > 0) {
+    int buff = 0;
+    // read the incoming byte:
+    buff = Serial.read();
+
+    Serial.write(53);
+    Serial.write(pose_x);
+    Serial.write(pose_y);
+    
+  }
 
   // Serial.print(input_x, DEC);
   // Serial.print(",");
