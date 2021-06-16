@@ -8,14 +8,16 @@
 Servo servo_x; // 建立SERVO物件
 Servo servo_y;
 int pose_x = 90, pose_y = 90;
+int pose_x_min = 80, pose_x_max = 100;
+int pose_y_min = 80, pose_y_max = 110;
 int buff = 0;
 int gui_flag = 0, control_flag = 0;
 int gui_x, gui_y;
 
 void setup()
 {
-  servo_x.attach(9); // 設定要將伺服馬達接到哪一個PIN腳
-  servo_y.attach(8);
+  servo_x.attach(8); // 設定要將伺服馬達接到哪一個PIN腳
+  servo_y.attach(9);
 
   pinMode(JOYSTICK_X, INPUT);
   pinMode(JOYSTICK_Y, INPUT);
@@ -31,9 +33,9 @@ void loop()
   /********************************************
    * serial
    * ****************************************/
-  while (1)
+  if (Serial.available() > 0)
   {
-    if (Serial.available() > 0)
+    while (1)
     {
       buff = Serial.read();
       // Serial.write(buff);
@@ -76,8 +78,8 @@ void loop()
           gui_y = buff;
           // Serial.println(gui_y, DEC);
 
-          pose_y = map(gui_x, 100, 0, 80, 100);
-          pose_x = map(gui_y, 100, 0, 80, 100);
+          pose_x = map(gui_x, 100, 0, pose_x_min, pose_x_max);
+          pose_y = map(gui_y, 100, 0, pose_y_min, pose_y_max);
           buff = 0;
           gui_flag = 0;
         }
@@ -94,8 +96,8 @@ void loop()
     input_x = analogRead(JOYSTICK_X);
     input_y = analogRead(JOYSTICK_Y);
     input_z = digitalRead(JOYSTICK_Z);
-    pose_y = map(input_x, 1, 1023, 80, 100);
-    pose_x = map(1024-input_y, 1, 1023, 80, 100);
+    pose_x = map(input_x, 1, 1023, pose_x_min, pose_x_max);
+    pose_y = map(input_y, 1023, 1, pose_y_min, pose_y_max);
   }
 
   /********************************************
