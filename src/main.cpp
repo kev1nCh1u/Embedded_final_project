@@ -78,8 +78,11 @@ void loop()
           gui_y = buff;
           // Serial.println(gui_y, DEC);
 
-          pose_x = map(gui_x, 100, 0, pose_x_base - 10, pose_x_base + 10);
-          pose_y = map(gui_y, 100, 0, pose_y_base - 10, pose_y_base + 10);
+          if(joy_flag == 0)
+          {
+            pose_x = map(gui_x, 100, 0, pose_x_base - 10, pose_x_base + 10);
+            pose_y = map(gui_y, 100, 0, pose_y_base - 10, pose_y_base + 10);
+          }
           buff = 0;
           gui_flag = 0;
         }
@@ -145,13 +148,13 @@ void loop()
   /********************************************
    * servo
    * ****************************************/
-  if (pose_x > 100)
-    pose_x = 100;
+  if (pose_x > 99)
+    pose_x = 99;
   else if (pose_x < 80)
     pose_x = 80;
 
-  if (pose_y > 100)
-    pose_y = 100;
+  if (pose_y > 99)
+    pose_y = 99;
   else if (pose_y < 80)
     pose_y = 80;
 
