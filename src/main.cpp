@@ -8,7 +8,7 @@
 Servo servo_x; // 建立SERVO物件
 Servo servo_y;
 int pose_x = 90, pose_y = 90;
-int pose_x_base = 87, pose_y_base = 97;
+int pose_x_base = 90, pose_y_base = 90;
 int buff = 0;
 int gui_flag = 0, control_flag = 0, joy_flag = 0, input_z_flag = 0;
 int gui_x, gui_y;
@@ -148,15 +148,15 @@ void loop()
   /********************************************
    * servo
    * ****************************************/
-  if (pose_x > 99)
-    pose_x = 99;
-  else if (pose_x < 80)
-    pose_x = 80;
+  if (pose_x > 110)
+    pose_x = 110;
+  else if (pose_x < 70)
+    pose_x = 70;
 
-  if (pose_y > 99)
-    pose_y = 99;
-  else if (pose_y < 80)
-    pose_y = 80;
+  if (pose_y > 110)
+    pose_y = 110;
+  else if (pose_y < 70)
+    pose_y = 70;
 
   servo_x.write(pose_x); //旋轉到
   servo_y.write(pose_y); //旋轉到
